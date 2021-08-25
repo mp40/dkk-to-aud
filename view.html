@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DKK to AUD</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: whitesmoke;
+            color: darkslategray;
+        }
+
+        h1, h2, h3 {
+            padding: 0;
+            margin: 0;
+            line-height: normal;
+        }
+
+        .wrapper {
+            max-width: 44em;
+            margin: 0 auto;
+            padding: 2em 0 0;
+            text-align: center;
+        }
+
+        .stats {
+            max-width: 20em;
+            margin: 1em auto 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .stats > span {
+            width: 50%;
+        }
+
+       
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+    <div class="wrapper">
+        <h1>DKK to AUD</h1>
+        <h2>exchange rates</h2>
+        <h3>22nd Jan 21 to date</h3>
+        <div class="stats">
+            <span>Highest Rate:</span>
+            <span>{{.High}}</span>
+            <span>Lowest Rate:</span>
+            <span>{{.Low}}</span>
+            <span>Average Rate:</span>
+            <span>{{.Average}}</span>
+        </div>
+    </div>
+</body>
+</html>
