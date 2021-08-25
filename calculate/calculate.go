@@ -8,6 +8,7 @@ func GetResults(values [][]interface{}) map[string]float64 {
 
 	high := 0.0
 	low := 666.0
+	sum := 0.0
 
 	for _, v := range values {
 
@@ -31,12 +32,14 @@ func GetResults(values [][]interface{}) map[string]float64 {
 		if f < low {
 			low = f
 		}
+
+		sum += f
 	}
 
 	results := map[string]float64{
 		"high":    high,
 		"low":     low,
-		"average": 0.2112,
+		"average": sum / float64(len(values)),
 	}
 
 	return results
