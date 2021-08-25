@@ -4,7 +4,13 @@ import (
 	"strconv"
 )
 
-func GetResults(values [][]interface{}) map[string]float64 {
+type Data struct {
+	High    float64
+	Low     float64
+	Average float64
+}
+
+func GetResults(values [][]interface{}) *Data {
 
 	high := 0.0
 	low := 666.0
@@ -36,11 +42,11 @@ func GetResults(values [][]interface{}) map[string]float64 {
 		sum += f
 	}
 
-	results := map[string]float64{
-		"high":    high,
-		"low":     low,
-		"average": sum / float64(len(values)),
+	results := Data{
+		High:    high,
+		Low:     low,
+		Average: sum / float64(len(values)),
 	}
 
-	return results
+	return &results
 }

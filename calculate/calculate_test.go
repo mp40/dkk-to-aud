@@ -29,39 +29,38 @@ func TestGetResults(t *testing.T) {
 	}
 
 	t.Run("highest exchange rate for slice of distinct numbers", func(t *testing.T) {
-		got := GetResults(double1)["high"]
+		got := GetResults(double1).High
 		want := 0.223
 		assertCorrectMapValues(t, got, want)
 	})
 
 	t.Run("highest exchange rate with repeated numbers", func(t *testing.T) {
-		got := GetResults(double2)["high"]
+		got := GetResults(double2).High
 		want := 0.222
 		assertCorrectMapValues(t, got, want)
 	})
 
 	t.Run("lowest exchange rate for slice of distinct numbers", func(t *testing.T) {
-		got := GetResults(double1)["low"]
+		got := GetResults(double1).Low
 		want := 0.199
 		assertCorrectMapValues(t, got, want)
 	})
 
 	t.Run("lowest exchange rate with repeated numbers", func(t *testing.T) {
-		got := GetResults(double2)["low"]
+		got := GetResults(double2).Low
 		want := 0.216
 		assertCorrectMapValues(t, got, want)
 	})
 
 	t.Run("average exchange rate for slice of distinct numbers", func(t *testing.T) {
-		got := GetResults(double1)["average"]
+		got := GetResults(double1).Average
 		want := (0.217 + 0.201 + 0.199 + 0.223 + 0.216) / 5
 		assertCorrectMapValues(t, got, want)
 	})
 
 	t.Run("average exchange rate with repeated numbers", func(t *testing.T) {
-		got := GetResults(double2)["average"]
+		got := GetResults(double2).Average
 		want := (0.219 + 0.222 + 0.216 + 0.222 + 0.216 + 0.219) / 6
 		assertCorrectMapValues(t, got, want)
 	})
-
 }
