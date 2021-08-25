@@ -11,7 +11,7 @@ func TestGetResults(t *testing.T) {
 		}
 	}
 
-	double := [][]interface{}{
+	double1 := [][]interface{}{
 		{"date1", "0.217"},
 		{"date2", "0.201"},
 		{"date3", "0.199"},
@@ -19,20 +19,34 @@ func TestGetResults(t *testing.T) {
 		{"date5", "0.216"},
 	}
 
-	t.Run("highest exchange rate", func(t *testing.T) {
-		got := GetResults(double)["high"]
+	double2 := [][]interface{}{
+		{"date1", "0.219"},
+		{"date2", "0.222"},
+		{"date3", "0.216"},
+		{"date4", "0.222"},
+		{"date5", "0.216"},
+	}
+
+	t.Run("highest exchange rate for slice of distinct numbers", func(t *testing.T) {
+		got := GetResults(double1)["high"]
 		want := 0.223
 		assertCorrectMapValues(t, got, want)
 	})
 
-	t.Run("lowest exchange rate", func(t *testing.T) {
-		got := GetResults(double)["low"]
+	t.Run("highest exchange rate with repeated numbers", func(t *testing.T) {
+		got := GetResults(double2)["high"]
+		want := 0.222
+		assertCorrectMapValues(t, got, want)
+	})
+
+	t.Run("lowest exchange rate for slice of distinct numbers", func(t *testing.T) {
+		got := GetResults(double1)["low"]
 		want := 0.199
 		assertCorrectMapValues(t, got, want)
 	})
 
-	t.Run("average exchange rate", func(t *testing.T) {
-		got := GetResults(double)["average"]
+	t.Run("average exchange rate for slice of distinct numbers", func(t *testing.T) {
+		got := GetResults(double1)["average"]
 		want := (0.217 + 0.201 + 0.199 + 0.223 + 0.216) / 5
 		assertCorrectMapValues(t, got, want)
 	})
