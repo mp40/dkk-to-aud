@@ -25,6 +25,7 @@ func TestGetResults(t *testing.T) {
 		{"date3", "0.216"},
 		{"date4", "0.222"},
 		{"date5", "0.216"},
+		{"date6", "0.219"},
 	}
 
 	t.Run("highest exchange rate for slice of distinct numbers", func(t *testing.T) {
@@ -42,6 +43,12 @@ func TestGetResults(t *testing.T) {
 	t.Run("lowest exchange rate for slice of distinct numbers", func(t *testing.T) {
 		got := GetResults(double1)["low"]
 		want := 0.199
+		assertCorrectMapValues(t, got, want)
+	})
+
+	t.Run("lowest exchange rate with repeated numbers", func(t *testing.T) {
+		got := GetResults(double2)["low"]
+		want := 0.216
 		assertCorrectMapValues(t, got, want)
 	})
 

@@ -7,6 +7,7 @@ import (
 func GetResults(values [][]interface{}) map[string]float64 {
 
 	high := 0.0
+	low := 666.0
 
 	for _, v := range values {
 
@@ -26,11 +27,15 @@ func GetResults(values [][]interface{}) map[string]float64 {
 		if f > high {
 			high = f
 		}
+
+		if f < low {
+			low = f
+		}
 	}
 
 	results := map[string]float64{
 		"high":    high,
-		"low":     0.199,
+		"low":     low,
 		"average": 0.2112,
 	}
 
