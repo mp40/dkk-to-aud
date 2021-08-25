@@ -58,4 +58,10 @@ func TestGetResults(t *testing.T) {
 		assertCorrectMapValues(t, got, want)
 	})
 
+	t.Run("average exchange rate with repeated numbers", func(t *testing.T) {
+		got := GetResults(double2)["average"]
+		want := (0.219 + 0.222 + 0.216 + 0.222 + 0.216 + 0.219) / 6
+		assertCorrectMapValues(t, got, want)
+	})
+
 }
