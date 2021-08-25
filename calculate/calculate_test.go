@@ -4,7 +4,7 @@ import "testing"
 
 func TestGetResults(t *testing.T) {
 
-	assertCorrectMessage := func(t testing.TB, got, want float64) {
+	assertCorrectMapValues := func(t testing.TB, got, want float64) {
 		t.Helper()
 		if got != want {
 			t.Errorf("got %f want %f", got, want)
@@ -22,19 +22,19 @@ func TestGetResults(t *testing.T) {
 	t.Run("highest exchange rate", func(t *testing.T) {
 		got := GetResults(double)["high"]
 		want := 0.223
-		assertCorrectMessage(t, got, want)
+		assertCorrectMapValues(t, got, want)
 	})
 
 	t.Run("lowest exchange rate", func(t *testing.T) {
 		got := GetResults(double)["low"]
 		want := 0.199
-		assertCorrectMessage(t, got, want)
+		assertCorrectMapValues(t, got, want)
 	})
 
 	t.Run("average exchange rate", func(t *testing.T) {
 		got := GetResults(double)["average"]
 		want := (0.217 + 0.201 + 0.199 + 0.223 + 0.216) / 5
-		assertCorrectMessage(t, got, want)
+		assertCorrectMapValues(t, got, want)
 	})
 
 }
