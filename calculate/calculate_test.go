@@ -31,4 +31,10 @@ func TestGetResults(t *testing.T) {
 		assertCorrectMessage(t, got, want)
 	})
 
+	t.Run("average exchange rate", func(t *testing.T) {
+		got := GetResults(double)["average"]
+		want := (0.217 + 0.201 + 0.199 + 0.223 + 0.216) / 5
+		assertCorrectMessage(t, got, want)
+	})
+
 }
