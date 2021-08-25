@@ -4,6 +4,13 @@ import "testing"
 
 func TestGetResults(t *testing.T) {
 
+	assertCorrectMessage := func(t testing.TB, got, want float64) {
+		t.Helper()
+		if got != want {
+			t.Errorf("got %f want %f", got, want)
+		}
+	}
+
 	double := [][]interface{}{
 		{"date1", "0.217"},
 		{"date2", "0.201"},
@@ -12,11 +19,16 @@ func TestGetResults(t *testing.T) {
 		{"date5", "0.216"},
 	}
 
-	got := GetResults(double)["high"]
+	t.Run("highest exchange rate", func(t *testing.T) {
+		got := GetResults(double)["high"]
+		want := 0.223
+		assertCorrectMessage(t, got, want)
+	})
 
-	want := 0.223
+	t.Run("lowest exchange rate", func(t *testing.T) {
+		got := GetResults(double)["low"]
+		want := 0.199
+		assertCorrectMessage(t, got, want)
+	})
 
-	if got != want {
-		t.Errorf("got %f want %f", got, want)
-	}
 }
