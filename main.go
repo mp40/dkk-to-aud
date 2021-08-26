@@ -11,14 +11,12 @@ import (
 	"github.com/mp40/dkk-to-aud/read"
 )
 
-func getEnvVariable(key string) string {
+func loadEnvFile() {
 	err := godotenv.Load(".env")
 
 	if err != nil {
 		log.Fatalf("Error loading .env file")
 	}
-
-	return os.Getenv(key)
 }
 
 func check(err error) {
@@ -40,7 +38,18 @@ func viewHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+	env := os.Getenv("APP_ENV")
+	if env != "production" {
+		loadEnvFile()
+	}
+
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
 	http.HandleFunc("/", viewHandler)
-	err := http.ListenAndServe(":"+getEnvVariable("PORT"), nil)
-	log.Fatal(err)
+	err := http.ListenAndServe(":"+port, nil)
+	log.Panic(err)
 }
