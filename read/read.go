@@ -2,7 +2,6 @@ package read
 
 import (
 	"context"
-	"io/ioutil"
 	"log"
 	"os"
 
@@ -26,12 +25,9 @@ func getEnvVariable(key string) string {
 func Read() [][]interface{} {
 	ctx := context.Background()
 
-	secrets, err := ioutil.ReadFile("secrets.json")
-	if err != nil {
-		log.Fatalf("Unable to read client secret file: %v", err)
-	}
+	secrets := getEnvVariable("JWT_CONFIG")
 
-	config, err := google.JWTConfigFromJSON(secrets, "https://www.googleapis.com/auth/spreadsheets.readonly")
+	config, err := google.JWTConfigFromJSON([]byte(secrets), "https://www.googleapis.com/auth/spreadsheets.readonly")
 	if err != nil {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
 	}
