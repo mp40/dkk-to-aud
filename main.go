@@ -41,6 +41,6 @@ func viewHandler(writer http.ResponseWriter, request *http.Request) {
 
 func main() {
 	http.HandleFunc("/", viewHandler)
-	err := http.ListenAndServe(getEnvVariable("BASE_URL"), nil)
+	err := http.ListenAndServe(":"+getEnvVariable("PORT"), nil)
 	log.Fatal(err)
 }
