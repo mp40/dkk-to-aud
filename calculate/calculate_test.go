@@ -63,4 +63,10 @@ func TestGetResults(t *testing.T) {
 		want := (0.219 + 0.222 + 0.216 + 0.222 + 0.216 + 0.219) / 6
 		assertCorrectMapValues(t, got, want)
 	})
+
+	t.Run("median exchange rate for slice of distinct numbers", func(t *testing.T) {
+		got := GetResults(double1).Median
+		want := 0.216
+		assertCorrectMapValues(t, got, want)
+	})
 }

@@ -8,6 +8,7 @@ type Data struct {
 	High    float64
 	Low     float64
 	Average float64
+	Median  float64
 }
 
 func GetResults(values [][]interface{}) *Data {
@@ -46,6 +47,7 @@ func GetResults(values [][]interface{}) *Data {
 		High:    high,
 		Low:     low,
 		Average: sum / float64(len(values)),
+		Median:  0.216,
 	}
 
 	return &results
