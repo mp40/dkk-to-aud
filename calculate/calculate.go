@@ -9,14 +9,15 @@ import (
 type Data struct {
 	High    float64
 	Low     float64
+	Latest  float64
 	Average float64
 	Median  float64
 }
 
-func GetMedian(sorted []float64, len int) float64 {
-	m := len / 2
+func GetMedian(sorted []float64, length int) float64 {
+	m := length / 2
 
-	if len%2 == 0 {
+	if length%2 == 0 {
 		return (sorted[m] + sorted[m-1]) / 2
 	}
 
@@ -29,7 +30,7 @@ func GetResults(values [][]interface{}) *Data {
 	low := 666.0
 	sum := 0.0
 
-	len := len(values)
+	l := len(values)
 
 	s := make([]float64, 0)
 
@@ -61,13 +62,15 @@ func GetResults(values [][]interface{}) *Data {
 		s = append(s, f)
 	}
 
+	latest := s[len(s)-1]
 	sort.Float64s(s)
 
 	results := Data{
 		High:    high,
 		Low:     low,
-		Average: math.Round((sum/float64(len))*10000000) / 10000000,
-		Median:  GetMedian(s, len),
+		Latest:  latest,
+		Average: math.Round((sum/float64(l))*10000000) / 10000000,
+		Median:  GetMedian(s, l),
 	}
 
 	return &results
