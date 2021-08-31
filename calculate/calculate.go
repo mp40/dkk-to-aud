@@ -1,6 +1,7 @@
 package calculate
 
 import (
+	"sort"
 	"strconv"
 )
 
@@ -11,11 +12,25 @@ type Data struct {
 	Median  float64
 }
 
+func GetMedian(sorted []float64, len int) float64 {
+	m := len / 2
+
+	if len%2 == 0 {
+		return (sorted[m] + sorted[m-1]) / 2
+	}
+
+	return sorted[m]
+}
+
 func GetResults(values [][]interface{}) *Data {
 
 	high := 0.0
 	low := 666.0
 	sum := 0.0
+
+	len := len(values)
+
+	s := make([]float64, 0)
 
 	for _, v := range values {
 
@@ -41,13 +56,17 @@ func GetResults(values [][]interface{}) *Data {
 		}
 
 		sum += f
+
+		s = append(s, f)
 	}
+
+	sort.Float64s(s)
 
 	results := Data{
 		High:    high,
 		Low:     low,
-		Average: sum / float64(len(values)),
-		Median:  0.216,
+		Average: sum / float64(len),
+		Median:  GetMedian(s, len),
 	}
 
 	return &results

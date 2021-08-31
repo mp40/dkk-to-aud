@@ -69,4 +69,10 @@ func TestGetResults(t *testing.T) {
 		want := 0.216
 		assertCorrectMapValues(t, got, want)
 	})
+
+	t.Run("median exchange rate with repeated numbers", func(t *testing.T) {
+		got := GetResults(double2).Median
+		want := 0.219
+		assertCorrectMapValues(t, got, want)
+	})
 }
