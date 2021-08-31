@@ -1,6 +1,7 @@
 package calculate
 
 import (
+	"math"
 	"sort"
 	"strconv"
 )
@@ -65,7 +66,7 @@ func GetResults(values [][]interface{}) *Data {
 	results := Data{
 		High:    high,
 		Low:     low,
-		Average: sum / float64(len),
+		Average: math.Round((sum/float64(len))*10000000) / 10000000,
 		Median:  GetMedian(s, len),
 	}
 
