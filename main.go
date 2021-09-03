@@ -43,10 +43,10 @@ func main() {
 		loadEnvFile()
 	}
 
-	port := os.Getenv("PORT")
+	port := os.Getenv("APP_PORT")
 
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		log.Fatal("$APP_PORT must be set")
 	}
 
 	http.HandleFunc("/", viewHandler)
