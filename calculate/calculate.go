@@ -1,9 +1,14 @@
 package calculate
 
 import (
+	"encoding/json"
+	"log"
 	"math"
 	"sort"
 	"strconv"
+	"time"
+
+	"github.com/mp40/dkk-to-aud/cache"
 )
 
 type Data struct {
@@ -22,6 +27,22 @@ func GetMedian(sorted []float64, length int) float64 {
 	}
 
 	return sorted[m]
+}
+
+func cacheData(results *Data) {
+	timestamp := time.Now()
+	key := timestamp.Format("2006-01-02")
+
+	value, marshalErr := json.Marshal(results)
+
+	cache := &cache.Cache
+
+	if marshalErr == nil {
+		_, err := cache.Set(key, string(value))
+		if err != nil {
+			log.Println(err)
+		}
+	}
 }
 
 func GetResults(values [][]interface{}) *Data {
@@ -72,6 +93,8 @@ func GetResults(values [][]interface{}) *Data {
 		Average: math.Round((sum/float64(l))*10000000) / 10000000,
 		Median:  GetMedian(s, l),
 	}
+
+	cacheData(&results)
 
 	return &results
 }
