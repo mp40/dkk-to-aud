@@ -3,6 +3,7 @@ package cache
 import (
 	"context"
 	"log"
+	"os"
 	"time"
 
 	"github.com/go-redis/redis"
@@ -23,7 +24,8 @@ var Cache RedisCache
 
 func CreateRedisCache() {
 	client := redis.NewClient(&redis.Options{
-		Addr: "dkk_to_aud_redis:6379",
+		Addr:     "dkk_to_aud_redis:6379",
+		Password: os.Getenv("REDIS_PASSWORD"),
 	})
 
 	_, err := client.Ping().Result()

@@ -13,5 +13,6 @@ services:
   dkk_to_aud_redis:
     image: redis:alpine
     container_name: dkk_to_aud_redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
     expose:
       - 6379
