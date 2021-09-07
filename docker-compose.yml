@@ -8,3 +8,10 @@ services:
     restart: unless-stopped
     ports:
       - "${PORT}:${APP_PORT}"
+    depends_on:
+      - dkk_to_aud_redis 
+  dkk_to_aud_redis:
+    image: redis:alpine
+    container_name: dkk_to_aud_redis
+    expose:
+      - 6379
