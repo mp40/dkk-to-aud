@@ -8,27 +8,12 @@ import (
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/option"
 	"google.golang.org/api/sheets/v4"
-
-	"github.com/joho/godotenv"
 )
-
-func getEnvVariable(key string) string {
-	env := os.Getenv("APP_ENV")
-	if env != "production" {
-		err := godotenv.Load(".env")
-
-		if err != nil {
-			log.Fatalf("Error loading .env file")
-		}
-	}
-
-	return os.Getenv(key)
-}
 
 func Read() [][]interface{} {
 	ctx := context.Background()
 
-	secrets := getEnvVariable("JWT_CONFIG")
+	secrets := os.Getenv("JWT_CONFIG")
 
 	config, err := google.JWTConfigFromJSON([]byte(secrets), "https://www.googleapis.com/auth/spreadsheets.readonly")
 	if err != nil {
@@ -42,8 +27,8 @@ func Read() [][]interface{} {
 		log.Fatalf("Unable to retrieve Sheets client: %v", err)
 	}
 
-	spreadsheetId := getEnvVariable("SHEET_ID")
-	readRange := getEnvVariable("READ_RANGE")
+	spreadsheetId := os.Getenv("SHEET_ID")
+	readRange := os.Getenv("READ_RANGE")
 
 	resp, err := srv.Spreadsheets.Values.Get(spreadsheetId, readRange).Do()
 	if err != nil {
