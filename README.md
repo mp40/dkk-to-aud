@@ -4,14 +4,14 @@
 Application to track the exchange rate of DKK to AUD over the time I am in Denmark.
 The purpose to help make decisions on best time to send money back to Australia.
 
-#### Currently at MVP
+#### Currently at Version Two
 Current Implementation Details
 * Gets historical data from a google sheet as APIs with historical date range queries require paid subscription
-* Displays data on static page (Highest, Lowest, Average rates)
+* Displays data on static page (Highest, Lowest, Latest, Average, Median rates)
+* Builds app with two stage Docker build process.
+* Uses Redis to cache calculations to reduce calls for data.
 
 #### Possible Areas Of Improvement
 * Refactoring and improved tests as I get a better feel for Go
-* Add Median and Mode to data shown
-* Containerise with Docker
-* Add Redis to cache results
+* Add Mode to data shown
 * Receive updates on exchange rate via email
