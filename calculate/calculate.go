@@ -30,7 +30,7 @@ func GetMedian(sorted []float64, length int) float64 {
 }
 
 func cacheData(results *Data) {
-	timestamp := time.Now()
+	timestamp := time.Now().UTC()
 	key := timestamp.Format("2006-01-02")
 
 	value, marshalErr := json.Marshal(results)

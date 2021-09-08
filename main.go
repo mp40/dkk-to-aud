@@ -32,7 +32,7 @@ func getCachedData() (*calculate.Data, error) {
 	cache := &cache.Cache
 	var data *calculate.Data
 
-	timestamp := time.Now()
+	timestamp := time.Now().UTC()
 	key := timestamp.Format("2006-01-02")
 
 	cachedData, err := cache.Get(key)
