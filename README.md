@@ -1,5 +1,5 @@
 ### dkk-to-aud
-[Deloyed on Heroku](https://dkk-to-aud.herokuapp.com/)
+[MVP Deloyed on Heroku](https://dkk-to-aud.herokuapp.com/)
 
 Application to track the exchange rate of DKK to AUD over the time I am in Denmark.
 The purpose to help make decisions on best time to send money back to Australia.
@@ -15,3 +15,6 @@ Current Implementation Details
 * Refactoring and improved tests as I get a better feel for Go
 * Add Mode to data shown
 * Receive updates on exchange rate via email
+
+#### Deployment
+Current Heroku deployed version is the un-dockerized MVP without Redis caching, latest and median rates.
